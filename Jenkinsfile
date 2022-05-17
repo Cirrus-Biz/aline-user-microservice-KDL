@@ -45,7 +45,7 @@ pipeline {
         
         stage('Archive') {
             steps {
-            archiveArtifacts artifacts: 'target/*.jar', followSymlinks: false
+            archiveArtifacts artifacts: 'user-microservice/target/*.jar', followSymlinks: false
             }
 
         }
