@@ -14,8 +14,7 @@ pipeline {
                         }
                 }
 
-            }       
-        }
+            } 
 
         stage('Quality Gate Check'){
             steps{
@@ -61,3 +60,4 @@ pipeline {
         
     }
     }
+}
