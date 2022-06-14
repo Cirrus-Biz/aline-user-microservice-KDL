@@ -17,7 +17,7 @@ pipeline {
             steps{
                 script{
                     withSonarQubeEnv(installationName: "sonarqube") {
-                        sh "mvn clean test verify sonar:sonar -Dsonar.projectKey=user-microservice-kdl"
+                        sh "mvn clean test verify sonar:sonar -Dsonar.projectKey=users-microservice-kdl"
                         }
                 }
 
@@ -50,8 +50,8 @@ pipeline {
                 script{
                     COMMIT = "${GIT_COMMIT}"
                     SLICE = COMMIT[1..7]
-                    sh "sudo docker build -t $env.AWS_ECR_REGISTRY/user-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE} ."
-                    sh "sudo docker build -t $env.AWS_ECR_REGISTRY/user-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE} ."
+                    sh "sudo docker build -t $env.AWS_ECR_REGISTRY/users-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE} ."
+                    sh "sudo docker build -t $env.AWS_ECR_REGISTRY/users-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE} ."
                 }
                 
 
@@ -64,8 +64,8 @@ pipeline {
                     COMMIT = "${GIT_COMMIT}"
                     SLICE = COMMIT[1..7]
                    docker.withRegistry("https://$env.AWS_ECR_REGISTRY", "ecr:$env.AWS_REGION:AWS-KDL"){
-                       docker.image("$env.AWS_ECR_REGISTRY/user-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE}").push()
-                       docker.image("$env.AWS_ECR_REGISTRY/user-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE}").push("latest")
+                       docker.image("$env.AWS_ECR_REGISTRY/users-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE}").push()
+                       docker.image("$env.AWS_ECR_REGISTRY/users-microservice-kdl:${SLICE}.${BUILD_NUMBER}.${DATE}").push("latest")
                    }
                 }
             }
